@@ -26,5 +26,6 @@ public class Menu : MonoBehaviour
     {
         OVRScene.RequestSpaceSetup();
         Debug.Log("hi");
+        
     }
 }
