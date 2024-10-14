@@ -8,7 +8,7 @@ using UnityEngine;
 public class MirrorHandler : MonoBehaviour
 {
     private BezierSpline spline;
-    private HandGrabInteractor handGrab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,18 +20,16 @@ public class MirrorHandler : MonoBehaviour
     void Update()
     {
 
-        for (int i = 1; i < spline.controlPoints.Count-5; i += 3)
+        for (int i = 3; i < spline.controlPoints.Count-3; i += 3)
         {
             var ball = spline.controlPoints[i].gameObject.GetComponent<MirrorObjects>();
             if (ball != null)
             {
-                ball.objectA = spline.controlPoints[i+2];
-                ball.objectB = spline.controlPoints[i+4];
+                ball.objectA = spline.controlPoints[i-1];
+                ball.interactorA = spline.controlPoints[i - 1].gameObject.GetComponentInChildren<GrabInteractable>();
+                ball.objectB = spline.controlPoints[i+1];
+                ball.interactorB = spline.controlPoints[i + 1].gameObject.GetComponentInChildren<GrabInteractable>();
             }
-        }
-        if (InteractorState.Select == handGrab.State)
-        {
-
         }
     }
 }
