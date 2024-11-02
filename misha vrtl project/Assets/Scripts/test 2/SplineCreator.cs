@@ -68,6 +68,7 @@ public class SplineCreator : MonoBehaviour
 
         // Создаем основную контрольную точку с использованием первого префаба
         GameObject newControlPoint = Instantiate(controlPointPrefab, position, Quaternion.identity);
+        newControlPoint.transform.rotation=Quaternion.Euler(new Vector3(0,90,0));
         spline.controlPoints.Add(newControlPoint.transform);
         isControl.Add(true);
     }

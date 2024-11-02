@@ -29,6 +29,7 @@ public class MirrorHandler : MonoBehaviour
                 ball.interactorA = spline.controlPoints[i - 1].gameObject.GetComponentInChildren<GrabInteractable>();
                 ball.objectB = spline.controlPoints[i+1];
                 ball.interactorB = spline.controlPoints[i + 1].gameObject.GetComponentInChildren<GrabInteractable>();
+                ball.interactorMid = spline.controlPoints[i].gameObject.GetComponentInChildren<GrabInteractable>();
             }
         }
     }
