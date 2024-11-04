@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class Menu : MonoBehaviour
     public List<GameObject> prefabs;
     public Transform spawn;
     private bool pressed;
+
+    public Rigidbody newIsSnappedValue;
+
 
     // Start is called before the first frame update
     void Start()
@@ -183,5 +187,15 @@ public class Menu : MonoBehaviour
         pressed = false;
     }
 
+    public void SnapHandle()
+    {
+        SnapInteractable[] snapObjects = FindObjectsOfType<SnapInteractable>();
 
+        // Перебираем каждый объект и изменяем значение переменной
+        foreach (SnapInteractable snapObject in snapObjects)
+        {
+            //snapObject.Rigidbody = newIsSnappedValue;
+            //Debug.Log($"Updated {snapObject.gameObject.name}: isSnapped = {snapObject.isSnapped}");
+        }
+    }
 }
