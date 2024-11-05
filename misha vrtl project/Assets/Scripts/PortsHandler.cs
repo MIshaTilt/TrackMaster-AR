@@ -83,6 +83,27 @@ public class PortsHandler : MonoBehaviour
         }
     }
 
+    public void ChangeDirOnePort()
+    {
+        if (left)
+        {
+            left = false;
+            rightIn.SetActive(true);
+            rightOut.SetActive(false);
+            leftInd.SetActive(false);
+            rightInd.SetActive(true);
+        }
+        else
+        {
+            left = true;
+            rightIn.SetActive(false);
+            rightOut.SetActive(true);
+            leftInd.SetActive(true);
+            rightInd.SetActive(false);
+        }
+    }
+
+
     public void Del()
     {
         Destroy(main);
