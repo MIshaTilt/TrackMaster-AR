@@ -5905,7 +5905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4945657795973823126, guid: 2cccfdba1330e8f46a15a02a8e28fc03, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.60278
+      value: 0.0029
       objectReference: {fileID: 0}
     - target: {fileID: 4945657795973823126, guid: 2cccfdba1330e8f46a15a02a8e28fc03, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5975,10 +5975,18 @@ PrefabInstance:
       propertyPath: handbrakeDriftMultiplier
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7047387895198835453, guid: 2cccfdba1330e8f46a15a02a8e28fc03, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab11d992fd1f1f24aa81671dd53240d9, type: 2}
     - target: {fileID: 9152088327701927524, guid: 2cccfdba1330e8f46a15a02a8e28fc03, type: 3}
       propertyPath: m_Mass
       value: 950
       objectReference: {fileID: 0}
+    - target: {fileID: 9177038101363520881, guid: 2cccfdba1330e8f46a15a02a8e28fc03, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2959467708922500008, guid: 2e03a0cef5c1cf44aa52a7d6f014c4da, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
