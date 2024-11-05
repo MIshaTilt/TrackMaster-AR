@@ -5,15 +5,23 @@ TagManager:
   serializedVersion: 2
   tags:
   - ControlPoint
+  - QDSUIToggleButton
+  - QDSUIIcon
+  - QDSUITextSecondaryColor
+  - QDSUIBorderlessButton
+  - QDSUITooltip
+  - QDSUISecondaryButton
+  - QDSUIToggleBorderlessButton
+  - QDSUISharedThemeColor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - HandGrab
   - Water
   - UI
-  - 
-  - 
+  - car
+  - collider
   - 
   - 
   - 

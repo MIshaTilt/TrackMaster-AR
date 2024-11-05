@@ -197,6 +197,12 @@ public class Menu : MonoBehaviour
             GameObject instance = Instantiate(prefabs[24], spawn.position, Quaternion.identity);
             instance.SetActive(true);
             StartCoroutine(Reset());
+        }if (buttons[25].localScale.x != 1 && pressed == false)
+        {
+            pressed = true;
+            GameObject instance = Instantiate(prefabs[25], spawn.position, Quaternion.identity);
+            instance.SetActive(true);
+            StartCoroutine(Reset());
         }
 
     }

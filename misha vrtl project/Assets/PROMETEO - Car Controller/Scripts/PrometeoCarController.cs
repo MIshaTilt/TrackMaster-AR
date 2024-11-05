@@ -122,6 +122,14 @@ public class PrometeoCarController : MonoBehaviour
       public GameObject handbrakeButton;
       PrometeoTouchInput handbrakePTI;
 
+        [Space(20)]
+        public OVRInput.RawAxis2D VRsteering;
+        public OVRInput.RawAxis1D VRtorque;
+        public OVRInput.RawAxis1D VRreverse;
+        public OVRInput.RawButton VRhandbrake;
+
+
+
     //CAR DATA
 
       [HideInInspector]
