@@ -106,6 +106,12 @@ public class PortsHandler : MonoBehaviour
 
     public void Del()
     {
+        StartCoroutine(Delete());
+    }
+
+    private IEnumerator Delete()
+    {
+        yield return new WaitForSeconds(0.2f);
         Destroy(main);
     }
 }
