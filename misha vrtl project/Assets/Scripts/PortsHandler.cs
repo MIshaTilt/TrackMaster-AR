@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class PortsHandler : MonoBehaviour
 {
-    public HandGrabInteractable grabbed;
+    public HandGrabInteractable grabbed1;
+    public HandGrabInteractable grabbed2;
+    public GrabInteractable grabbed3;
     public bool active = true;
 
     public GameObject leftIn;
@@ -35,13 +37,13 @@ public class PortsHandler : MonoBehaviour
         act.text = active.ToString();
         lef.text = left.ToString();
 
-        if (grabbed.State == InteractableState.Select && active == true)
+        if (grabbed1.State == InteractableState.Select || grabbed2.State == InteractableState.Select || grabbed3.State == InteractableState.Select && active == true)
         {
             leftIn.SetActive(false);
             rightIn.SetActive(false);
             active = false;
         }
-        else if (grabbed.State == InteractableState.Normal && active == false) { StartCoroutine(SetAct()); }
+        else if (grabbed1.State == InteractableState.Normal && grabbed2.State == InteractableState.Normal && grabbed3.State == InteractableState.Normal && active == false) { StartCoroutine(SetAct()); }
     }
 
     private IEnumerator SetAct()
