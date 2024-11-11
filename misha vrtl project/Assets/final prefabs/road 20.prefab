@@ -179,7 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cb6a7275af2fd46b8a8acb2dbc0065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbed: {fileID: 3275554518449703717}
+  grabbed1: {fileID: 0}
+  grabbed2: {fileID: 0}
+  grabbed3: {fileID: 0}
   active: 1
   leftIn: {fileID: 8684497580562748215}
   leftOut: {fileID: 5785856320336979174}

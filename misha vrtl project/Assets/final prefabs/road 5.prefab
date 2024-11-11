@@ -2507,7 +2507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cb6a7275af2fd46b8a8acb2dbc0065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbed: {fileID: 5770792754737895561}
+  grabbed1: {fileID: 0}
+  grabbed2: {fileID: 0}
+  grabbed3: {fileID: 0}
   active: 1
   leftIn: {fileID: 1056071229118731290}
   leftOut: {fileID: 7702791906184567022}
