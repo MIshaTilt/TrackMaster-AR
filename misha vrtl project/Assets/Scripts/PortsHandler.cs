@@ -37,7 +37,7 @@ public class PortsHandler : MonoBehaviour
         act.text = active.ToString();
         lef.text = left.ToString();
 
-        if (grabbed1.State == InteractableState.Select || grabbed2.State == InteractableState.Select || grabbed3.State == InteractableState.Select && active == true)
+        if ((grabbed1.State == InteractableState.Select || grabbed2.State == InteractableState.Select || grabbed3.State == InteractableState.Select) && active == true)
         {
             leftIn.SetActive(false);
             rightIn.SetActive(false);
