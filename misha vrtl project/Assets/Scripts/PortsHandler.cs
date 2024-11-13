@@ -43,7 +43,8 @@ public class PortsHandler : MonoBehaviour
             rightIn.SetActive(false);
             active = false;
         }
-        else if (grabbed1.State == InteractableState.Normal && grabbed2.State == InteractableState.Normal && grabbed3.State == InteractableState.Normal && active == false) { StartCoroutine(SetAct()); }
+        else if (grabbed1.State == InteractableState.Normal && grabbed2.State == InteractableState.Normal && grabbed3.State == InteractableState.Normal && active == false) { 
+            StartCoroutine(SetAct()); }
     }
 
     private IEnumerator SetAct()
@@ -66,12 +67,16 @@ public class PortsHandler : MonoBehaviour
         if(left)
         {
             left = false;
-            leftIn.SetActive(true);
+            //leftIn.SetActive(true);
             leftOut.SetActive(false);
             leftInd.SetActive(false);
             rightIn.SetActive(false);
             rightOut.SetActive(true);
             rightInd.SetActive(true);
+            if(active==true)
+            {
+                leftIn.SetActive(true);
+            }
         }
         else
         {
@@ -79,9 +84,13 @@ public class PortsHandler : MonoBehaviour
             leftIn.SetActive(false);
             leftOut.SetActive(true);
             leftInd.SetActive(true);
-            rightIn.SetActive(true);
+            //rightIn.SetActive(true);
             rightOut.SetActive(false);
             rightInd.SetActive(false);
+            if (active == true)
+            {
+                rightIn.SetActive(true);
+            }
         }
     }
 
