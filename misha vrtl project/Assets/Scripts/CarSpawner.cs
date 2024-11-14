@@ -31,6 +31,9 @@ public class CarSpawner : MonoBehaviour
     public float reloadTime = 1f;
     private float reloadTimer;
 
+    public GameObject rightController;
+    public GameObject rightControllerInteraction;
+    public GameObject notification;
 
     // Start is called before the first frame update
     void Start()
@@ -44,12 +47,13 @@ public class CarSpawner : MonoBehaviour
         if (buttons[0].localScale.x != 1 && pressed == false)
         {
             pressed = true;
-            isDriving = true;
             instance.DestroySafely();
             instance = null;
             check.SetActive(false);
             check = null;
             screen.SetActive(false);
+            notification.SetActive(false);
+            rightControllerInteraction.SetActive(true);
             StartCoroutine(Reset());
         }
         if (buttons[1].localScale.x != 1 && pressed == false)
@@ -117,6 +121,23 @@ public class CarSpawner : MonoBehaviour
             reloadTimer = 0f;
         }
 
+        if (rightController.active == false && instance != null && carController.enabled==true)
+        {
+            ScreenDisable();
+            notification.SetActive(true);
+            isDriving = false;
+            Debug.Log("1");
+        }
+        else if(rightController.active == true && instance != null)
+        {
+            //ScreenEnable();
+            notification.SetActive(false);
+            //isDriving = true;
+            Debug.Log("2");
+
+        }
+
+
     }
 
     private IEnumerator Reset()
@@ -144,11 +165,15 @@ public class CarSpawner : MonoBehaviour
     public void ScreenEnable()
     {
         screen.SetActive(true);
+        rightControllerInteraction.SetActive(false);
         carController.enabled = true;
+        Debug.Log("screen tryna active");
+        
     }
     public void ScreenDisable()
     {
         screen.SetActive(false);
+        rightControllerInteraction.SetActive(true);
         carController.enabled = false;
     }
     public void EnableCar(int n)
@@ -162,6 +187,8 @@ public class CarSpawner : MonoBehaviour
         check = checks[n];
         check.SetActive(true);
         screen.SetActive(true);
+        rightControllerInteraction.SetActive(false);
+        isDriving = true;
         instance.DestroySafely();
         instance = null;
         instance = Instantiate(prefabs[n], spawn.position, Quaternion.identity);

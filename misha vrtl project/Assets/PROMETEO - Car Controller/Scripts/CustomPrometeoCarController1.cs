@@ -91,7 +91,7 @@ public class CustomPrometeoCarController1 : MonoBehaviour
       [Space(10)]
       //The following variable lets you to set up a UI text to display the speed of your car.
       public bool useUI = false;
-      public Text carSpeedText; // Used to store the UI object that is going to show the speed of the car.
+      //public Text carSpeedText; // Used to store the UI object that is going to show the speed of the car.
 
     //SOUNDS
 
@@ -202,9 +202,9 @@ public class CustomPrometeoCarController1 : MonoBehaviour
         if(useUI){
           InvokeRepeating("CarSpeedUI", 0f, 0.1f);
         }else if(!useUI){
-          if(carSpeedText != null){
+          /*if(carSpeedText != null){
             carSpeedText.text = "0";
-          }
+          }*/
         }
 
         if(useSounds){
@@ -353,14 +353,14 @@ public class CustomPrometeoCarController1 : MonoBehaviour
     // This method converts the car speed data from float to string, and then set the text of the UI carSpeedText with this value.
     public void CarSpeedUI(){
 
-      if(useUI){
+      /*if(useUI){
           try{
             float absoluteCarSpeed = Mathf.Abs(carSpeed);
             carSpeedText.text = Mathf.RoundToInt(absoluteCarSpeed).ToString();
           }catch(Exception ex){
             Debug.LogWarning(ex);
           }
-      }
+      }*/
 
     }
 

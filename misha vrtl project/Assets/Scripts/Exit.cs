@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Exit : MonoBehaviour
@@ -25,7 +26,12 @@ public class Exit : MonoBehaviour
         }
         if (buttons[1].localScale.x != 1 && pressed == false)
         {
+            
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
     }
     private IEnumerator Reset()
