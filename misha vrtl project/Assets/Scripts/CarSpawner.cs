@@ -16,6 +16,7 @@ public class CarSpawner : MonoBehaviour
 
     public Rigidbody newIsSnappedValue;
 
+    public CustomPrometeoCarController1 carController;
 
     private GameObject instance;
     private GameObject activebutton;
@@ -30,6 +31,7 @@ public class CarSpawner : MonoBehaviour
     public float reloadTime = 1f;
     private float reloadTimer;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,96 +44,43 @@ public class CarSpawner : MonoBehaviour
         if (buttons[0].localScale.x != 1 && pressed == false)
         {
             pressed = true;
+            isDriving = true;
             instance.DestroySafely();
             instance = null;
             check.SetActive(false);
             check = null;
+            screen.SetActive(false);
             StartCoroutine(Reset());
         }
         if (buttons[1].localScale.x != 1 && pressed == false)
         {
             pressed = true;
-
-            if (check != null)
-            {
-                check.SetActive(false);
-                check = null;
-            }
-            check = checks[1];
-            check.SetActive(true);
-            instance.DestroySafely();
-            instance = null;
-            instance = Instantiate(prefabs[1], spawn.position, Quaternion.identity);
+            EnableCar(1);
             StartCoroutine(Reset());
         }if (buttons[2].localScale.x != 1 && pressed == false)
         {
             pressed = true;
-            if (check != null)
-            {
-                check.SetActive(false);
-                check = null;
-            }
-            check = checks[2];
-            check.SetActive(true);
-            instance.DestroySafely();
-            instance = null;
-            instance = Instantiate(prefabs[2], spawn.position, Quaternion.identity);
+            EnableCar(2);
             StartCoroutine(Reset());
         }if (buttons[3].localScale.x != 1 && pressed == false)
         {
             pressed = true;
-            if (check != null)
-            {
-                check.SetActive(false);
-                check = null;
-            }
-            check = checks[3];
-            check.SetActive(true);
-            instance.DestroySafely();
-            instance = null;
-            instance = Instantiate(prefabs[3], spawn.position, Quaternion.identity);
+            EnableCar(3);
             StartCoroutine(Reset());
         }if (buttons[4].localScale.x != 1 && pressed == false)
         {
             pressed = true;
-            if (check != null)
-            {
-                check.SetActive(false);
-                check = null;
-            }
-            check = checks[4];
-            check.SetActive(true);
-            instance.DestroySafely();
-            instance = null;
-            instance = Instantiate(prefabs[4], spawn.position, Quaternion.identity);
+            EnableCar(4);
             StartCoroutine(Reset());
         }if (buttons[5].localScale.x != 1 && pressed == false)
         {
             pressed = true;
-            if (check != null)
-            {
-                check.SetActive(false);
-                check = null;
-            }
-            check = checks[5];
-            check.SetActive(true);
-            instance.DestroySafely();
-            instance = null;
-            instance = Instantiate(prefabs[5], spawn.position, Quaternion.identity);
+            EnableCar(5);
             StartCoroutine(Reset());
         }if (buttons[6].localScale.x != 1 && pressed == false)
         {
             pressed = true;
-            if (check != null)
-            {
-                check.SetActive(false);
-                check = null;
-            }
-            check = checks[6];
-            check.SetActive(true);
-            instance.DestroySafely();
-            instance = null;
-            instance = Instantiate(prefabs[6], spawn.position, Quaternion.identity);
+            EnableCar(6);
             StartCoroutine(Reset());
         }
 
@@ -141,11 +90,11 @@ public class CarSpawner : MonoBehaviour
 
         }
 
-        if (OVRInput.GetDown(changeMode))
+        if (OVRInput.GetDown(changeMode) && instance != null)
         {
             isChanging = true;
         }
-        if (OVRInput.GetUp(changeMode))
+        if (OVRInput.GetUp(changeMode) && instance != null)
         {
             isChanging = false;
         }
@@ -180,15 +129,42 @@ public class CarSpawner : MonoBehaviour
     {
         if (isDriving)
         {
-            screen.SetActive(false);
+            ScreenDisable();
             isDriving = false;
             Debug.Log("1");
         }
         else if (!isDriving)
         {
-            screen.SetActive(true);
+            ScreenEnable();
             isDriving = true;
             Debug.Log("2");
         }
+    }
+
+    public void ScreenEnable()
+    {
+        screen.SetActive(true);
+        carController.enabled = true;
+    }
+    public void ScreenDisable()
+    {
+        screen.SetActive(false);
+        carController.enabled = false;
+    }
+    public void EnableCar(int n)
+    {
+
+        if (check != null)
+        {
+            check.SetActive(false);
+            check = null;
+        }
+        check = checks[n];
+        check.SetActive(true);
+        screen.SetActive(true);
+        instance.DestroySafely();
+        instance = null;
+        instance = Instantiate(prefabs[n], spawn.position, Quaternion.identity);
+        carController = instance.GetComponent<CustomPrometeoCarController1>();
     }
 }
