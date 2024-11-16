@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 8147155776828855871}
   m_Layer: 6
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5980,7 +5980,7 @@ GameObject:
   - component: {fileID: 451564571612438832}
   m_Layer: 3
   m_Name: Varuna Prometheus
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6067,7 +6067,6 @@ MonoBehaviour:
   RLWTireSkid: {fileID: 1717552785285880185}
   RRWTireSkid: {fileID: 3818062252779868455}
   useUI: 1
-  carSpeedText: {fileID: 0}
   useSounds: 1
   carEngineSound: {fileID: 3255162477609952898}
   tireScreechSound: {fileID: 2533119093288721265}

@@ -1617,7 +1617,7 @@ GameObject:
   - component: {fileID: 3041098601236365139}
   m_Layer: 6
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11348,7 +11348,7 @@ GameObject:
   - component: {fileID: 7054843792672984766}
   m_Layer: 3
   m_Name: Prometheus Vanth
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11435,7 +11435,6 @@ MonoBehaviour:
   RLWTireSkid: {fileID: 1076848397112346408}
   RRWTireSkid: {fileID: 6151367919403420541}
   useUI: 1
-  carSpeedText: {fileID: 0}
   useSounds: 1
   carEngineSound: {fileID: 4729855578133107388}
   tireScreechSound: {fileID: 3506892334852280493}

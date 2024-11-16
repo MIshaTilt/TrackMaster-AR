@@ -13,6 +13,7 @@ TagManager:
   - QDSUISecondaryButton
   - QDSUIToggleBorderlessButton
   - QDSUISharedThemeColor
+  - car
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - car
   - collider
   - mesh
-  - 
+  - props
   - 
   - 
   - 

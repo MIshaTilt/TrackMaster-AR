@@ -11,6 +11,7 @@ something useful for your game. Best regards, Mena.
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -149,6 +150,7 @@ public class CustomPrometeoCarController1 : MonoBehaviour
       float RLWextremumSlip;
       WheelFrictionCurve RRwheelFriction;
       float RRWextremumSlip;
+
 
     // Start is called before the first frame update
     void Start()
@@ -353,14 +355,14 @@ public class CustomPrometeoCarController1 : MonoBehaviour
     // This method converts the car speed data from float to string, and then set the text of the UI carSpeedText with this value.
     public void CarSpeedUI(){
 
-      /*if(useUI){
+      if(useUI){
           try{
             float absoluteCarSpeed = Mathf.Abs(carSpeed);
-            carSpeedText.text = Mathf.RoundToInt(absoluteCarSpeed).ToString();
+            //carSpeedText.text = Mathf.RoundToInt(absoluteCarSpeed).ToString();
           }catch(Exception ex){
             Debug.LogWarning(ex);
           }
-      }*/
+      }
 
     }
 

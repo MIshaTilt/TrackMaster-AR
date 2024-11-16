@@ -34,6 +34,7 @@ public class SpawnOnStart : MonoBehaviour
         {
             menu.SetActive(true);
             menu.transform.position = dialog.position;
+            menu.transform.rotation = dialog.rotation;
             Destroy(gameObject);
         }
     }

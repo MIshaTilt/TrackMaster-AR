@@ -6544,7 +6544,7 @@ GameObject:
   - component: {fileID: 7375317676417867004}
   m_Layer: 6
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11536,7 +11536,7 @@ GameObject:
   - component: {fileID: 2534391299149069777}
   m_Layer: 3
   m_Name: Prometheus Aurora-94
-  m_TagString: Untagged
+  m_TagString: car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11623,7 +11623,6 @@ MonoBehaviour:
   RLWTireSkid: {fileID: 4388077234011072739}
   RRWTireSkid: {fileID: 4591605846913930710}
   useUI: 1
-  carSpeedText: {fileID: 0}
   useSounds: 1
   carEngineSound: {fileID: 8539174998824380368}
   tireScreechSound: {fileID: 3682929132437280114}
