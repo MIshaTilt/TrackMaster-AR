@@ -35,6 +35,8 @@ public class CarSpawner : MonoBehaviour
     public GameObject rightControllerInteraction;
     public GameObject notification;
 
+    public Settings settings;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -193,5 +195,10 @@ public class CarSpawner : MonoBehaviour
         instance = null;
         instance = Instantiate(prefabs[n], spawn.position, Quaternion.identity);
         carController = instance.GetComponent<CustomPrometeoCarController1>();
+        var lights = instance.GetComponentsInChildren<Light>();
+        foreach (Light light in lights)
+        {
+            light.enabled = settings.needLights;
+        }
     }
 }

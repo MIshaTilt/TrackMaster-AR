@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 6894520838092802662}
   - component: {fileID: 5332978924663357074}
   - component: {fileID: 3649798589283304370}
-  - component: {fileID: 7009960895870009438}
+  - component: {fileID: 4079785136151684577}
+  - component: {fileID: 4529032971967889534}
   m_Layer: 9
   m_Name: light pole
-  m_TagString: Untagged
+  m_TagString: props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,9 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 5332978924663357074}
   colliders:
-  - {fileID: 7009960895870009438}
---- !u!64 &7009960895870009438
-MeshCollider:
+  - {fileID: 4079785136151684577}
+  - {fileID: 4529032971967889534}
+--- !u!136 &4079785136151684577
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,13 +146,35 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2923042674687853730, guid: 20b53fd21d8038e49b3340eb577c9f40, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.00018626668
+  m_Height: 0.009164249
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.0043552504, z: 5.867748e-18}
+--- !u!65 &4529032971967889534
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703332140659259408}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003407031, y: 0.00063565746, z: 0.0004838516}
+  m_Center: {x: 0.0014076157, y: 0.008775097, z: 0.000008894519}
 --- !u!1 &4960206081158208583
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +188,7 @@ GameObject:
   - component: {fileID: 3712524991697409812}
   m_Layer: 9
   m_Name: light
-  m_TagString: Untagged
+  m_TagString: lights
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 4960206081158208583}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7010577, y: 0.092295736, z: 0.09229585, w: 0.7010572}
-  m_LocalPosition: {x: 0.002466, y: 0.008777, z: 0}
+  m_LocalPosition: {x: 0.00249, y: 0.00868, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,8 +222,8 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 157.34557
+  m_InnerSpotAngle: 5.7599525
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2

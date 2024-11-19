@@ -19,6 +19,7 @@ public class PortsHandler : MonoBehaviour
     public GameObject rightOut;
     public GameObject rightInd;
     public bool left = false;
+    public bool oneWay = false;
 
     public TextMeshProUGUI act;
     public TextMeshProUGUI lef;
@@ -37,13 +38,13 @@ public class PortsHandler : MonoBehaviour
         act.text = active.ToString();
         lef.text = left.ToString();
 
-        if ((grabbed1.State == InteractableState.Select || grabbed2.State == InteractableState.Select || grabbed3.State == InteractableState.Select) && active == true)
+        if ((grabbed1.State == InteractableState.Select || grabbed2.State == InteractableState.Select || grabbed3.State == InteractableState.Select) && active == true && oneWay == false)
         {
             leftIn.SetActive(false);
             rightIn.SetActive(false);
             active = false;
         }
-        else if (grabbed1.State == InteractableState.Normal && grabbed2.State == InteractableState.Normal && grabbed3.State == InteractableState.Normal && active == false) { 
+        else if (grabbed1.State == InteractableState.Normal && grabbed2.State == InteractableState.Normal && grabbed3.State == InteractableState.Normal && active == false && oneWay == false) { 
             StartCoroutine(SetAct()); }
     }
 

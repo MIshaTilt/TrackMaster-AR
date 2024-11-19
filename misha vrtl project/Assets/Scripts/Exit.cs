@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -33,10 +34,23 @@ public class Exit : MonoBehaviour
             Application.Quit();
 #endif
         }
+        if (buttons[2].localScale.x != 1 && pressed == false)
+        {
+            DeleteObjects();
+        }
     }
     private IEnumerator Reset()
     {
         yield return new WaitForSeconds(1);
         pressed = false;
+    }
+
+    public void DeleteObjects()
+    {
+        var forDelete = GameObject.FindGameObjectsWithTag("roadsActive").Concat(GameObject.FindGameObjectsWithTag("props"));
+        foreach (var obj in forDelete)
+        {
+            Destroy(obj);
+        }
     }
 }

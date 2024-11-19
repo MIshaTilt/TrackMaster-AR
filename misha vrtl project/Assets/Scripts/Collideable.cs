@@ -18,6 +18,7 @@ public class Collideable : MonoBehaviour
         {
             collider.isTrigger = true;
         }
+        transform.gameObject.tag = "propsActive";
     }
 
     // Update is called once per frame
@@ -38,6 +39,18 @@ public class Collideable : MonoBehaviour
                 collider.isTrigger = false;
             }
             transform.parent = null;
+            var light = transform.GetComponentInChildren<Light>();
+            if(light != null)
+            {
+                light.enabled = false;
+            }
+            StartCoroutine(Delete());
         }
+    }
+
+    private IEnumerator Delete()
+    {
+        yield return new WaitForSeconds(15);
+        gameObject.SetActive(false);
     }
 }

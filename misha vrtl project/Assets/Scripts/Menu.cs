@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
 
     public List<RectTransform> buttons;
-    public List<GameObject> prefabs;
+    public List<GameObject> dynamicPrefabs;
+    public List<GameObject> staticPrefabs;
+    public List<GameObject> noPropsPrefabs;
     public Transform spawn;
     private bool pressed;
 
     public Rigidbody newIsSnappedValue;
+    public Settings settings;
 
+
+    public List<Sprite> propsSprites;
+    public List<Sprite> noPropsSprites;
+    public List<Image> icons;
 
     // Start is called before the first frame update
     void Start()
@@ -24,178 +32,103 @@ public class Menu : MonoBehaviour
     {
         if (buttons[0].localScale.x !=1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[0], spawn.position,Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(0);
         }
         if (buttons[1].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[1], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(1);
         }
         if (buttons[2].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[2], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(2);
         }
         if (buttons[3].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[3], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(3);
         }
         if (buttons[4].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[4], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(4);
         }
         if (buttons[5].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[5], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(5);
         }
         if (buttons[6].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[6], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(6);
         }
         if (buttons[7].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[7], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(7);
         }
         if (buttons[8].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[8], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(8);
         }
         if (buttons[9].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[9], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(9);
         }
         if (buttons[10].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[10], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(10);
         }
         if (buttons[11].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[11], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(11);
         }
         if (buttons[12].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[12], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(12);
         }
         if (buttons[13].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[13], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(13);
         }
         if (buttons[14].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[14], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(14);
         }
         if (buttons[15].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[15], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(15);
         }
         if (buttons[16].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[16], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(16);
         }
         if (buttons[17].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[17], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(17);
         }
         if (buttons[18].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[18], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(18);
         }
         if (buttons[19].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[19], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(19);
         }
         if (buttons[20].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[20], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(20);
         }
         if (buttons[21].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[21], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(21);
         }
         if (buttons[22].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[22], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(22);
         }
         if (buttons[23].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[23], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(23);
         }
         if (buttons[24].localScale.x != 1 && pressed == false)
         {
-            pressed = true;
-            GameObject instance = Instantiate(prefabs[24], spawn.position, Quaternion.identity);
-            instance.SetActive(true);
-            StartCoroutine(Reset());
+            SpawnRoad(24);
         }
 
     }
@@ -206,4 +139,45 @@ public class Menu : MonoBehaviour
         pressed = false;
     }
 
+    public void SpawnRoad(int n)
+    {
+        pressed = true;
+        GameObject prefab;
+        if(settings.propsInd == 0)
+        {
+            prefab = dynamicPrefabs[n];
+        }
+        else if(settings.propsInd == 1)
+        {
+            prefab = staticPrefabs[n];
+        }
+        else
+        {
+            prefab = noPropsPrefabs[n];
+        }
+        GameObject instance = Instantiate(prefab, spawn.position, Quaternion.identity);
+        instance.SetActive(true);
+        instance.tag = "roadsActive";
+        var lights = instance.GetComponentsInChildren<Light>();
+        foreach ( Light light in lights )
+        {
+            light.enabled = settings.needLights;
+        }
+        StartCoroutine(Reset());
+    }
+
+    public void ChangeSprites(bool props)
+    {
+        for(int i = 0; i < icons.Count; i++)
+        {
+            if(props == true)
+            {
+                icons[i].sprite = propsSprites[i];
+            }
+            else
+            {
+                icons[i].sprite = noPropsSprites[i];
+            }
+        }
+    }
 }
