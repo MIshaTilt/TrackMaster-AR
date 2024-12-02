@@ -151,6 +151,11 @@ public class CustomPrometeoCarController1 : MonoBehaviour
       WheelFrictionCurve RRwheelFriction;
       float RRWextremumSlip;
 
+    public float fwdFactor;
+    public float bckwFactor;
+    public float leftFactor;
+    public float rightFactor;
+
 
     // Start is called before the first frame update
     void Start()
@@ -268,19 +273,19 @@ public class CustomPrometeoCarController1 : MonoBehaviour
         if(Input.GetKey(KeyCode.W)){
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;
-          GoForward();
+          GoForward(1);
         }
         if(Input.GetKey(KeyCode.S)){
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;
-          GoReverse();
+          GoReverse(1);
         }
 
         if(Input.GetKey(KeyCode.A)){
-          TurnLeft();
+          TurnLeft(1);
         }
         if(Input.GetKey(KeyCode.D)){
-          TurnRight();
+          TurnRight(1);
         }
         if(Input.GetKey(KeyCode.Space)){
           CancelInvoke("DecelerateCar");
@@ -306,21 +311,21 @@ public class CustomPrometeoCarController1 : MonoBehaviour
         {
             CancelInvoke("DecelerateCar");
             deceleratingCar = false;
-            GoForward();
+            GoForward(OVRInput.Get(VRtorque));
         }
         if (OVRInput.Get(VRreverse) > 0)
         {
             CancelInvoke("DecelerateCar");
             deceleratingCar = false;
-            GoReverse();
+            GoReverse(OVRInput.Get(VRreverse));
         }
         if (OVRInput.Get(VRsteering).x < 0)
         {
-            TurnLeft();
+            TurnLeft(OVRInput.Get(VRsteering).x);
         }
         if (OVRInput.Get(VRsteering).x > 0)
         {
-            TurnRight();
+            TurnRight(OVRInput.Get(VRsteering).x);
         }
         if (OVRInput.GetDown(VRhandbrake))
         {
@@ -346,6 +351,49 @@ public class CustomPrometeoCarController1 : MonoBehaviour
             ResetSteeringAngle();
         }
 
+        if (fwdFactor > 0)
+        {
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            GoForward(fwdFactor);
+        }
+        if (bckwFactor > 0)
+        {
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            GoReverse(bckwFactor);
+        }
+        if (leftFactor < 0)
+        {
+            TurnLeft(leftFactor);
+        }
+        if (rightFactor > 0)
+        {
+            TurnRight(rightFactor);
+        }
+        if (OVRInput.GetDown(VRhandbrake))
+        {
+            CancelInvoke("DecelerateCar");
+            deceleratingCar = false;
+            Handbrake();
+        }
+        if (OVRInput.GetUp(VRhandbrake))
+        {
+            RecoverTraction();
+        }
+        if (!(bckwFactor > 0) && !(fwdFactor > 0))
+        {
+            ThrottleOff();
+        }
+        if (!(bckwFactor > 0) && !(fwdFactor > 0) && !(bckwFactor > 0) && !deceleratingCar)
+        {
+            InvokeRepeating("DecelerateCar", 0f, 0.1f);
+            deceleratingCar = true;
+        }
+        if ((leftFactor == 0 && rightFactor == 0) && steeringAxis != 0f)
+        {
+            ResetSteeringAngle();
+        }
 
         // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
         AnimateWheelMeshes();
@@ -404,16 +452,17 @@ public class CustomPrometeoCarController1 : MonoBehaviour
     //
 
     //The following method turns the front car wheels to the left. The speed of this movement will depend on the steeringSpeed variable.
-    public void TurnLeft(){
-        steeringAxis = OVRInput.Get(VRsteering).x;
+    public void TurnLeft(float value){
+        steeringAxis = value;
       var steeringAngle = steeringAxis * maxSteeringAngle;
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
     }
 
     //The following method turns the front car wheels to the right. The speed of this movement will depend on the steeringSpeed variable.
-    public void TurnRight(){
-      steeringAxis = OVRInput.Get(VRsteering).x;
+    public void TurnRight(float value)
+    {
+      steeringAxis = value;
       var steeringAngle = steeringAxis * maxSteeringAngle;
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
@@ -471,7 +520,7 @@ public class CustomPrometeoCarController1 : MonoBehaviour
     //
 
     // This method apply positive torque to the wheels in order to go forward.
-    public void GoForward(){
+    public void GoForward(float value){
       //If the forces aplied to the rigidbody in the 'x' asis are greater than
       //3f, it means that the car is losing traction, then the car will start emitting particle systems.
       if(Mathf.Abs(localVelocityX) > 2.5f){
@@ -482,7 +531,7 @@ public class CustomPrometeoCarController1 : MonoBehaviour
         DriftCarPS();
       }
         // The following part sets the throttle power to 1 smoothly.
-        throttleAxis = OVRInput.Get(VRtorque);
+        throttleAxis = value;
       //If the car is going backwards, then apply brakes in order to avoid strange
       //behaviours. If the local velocity in the 'z' axis is less than -1f, then it
       //is safe to apply positive torque to go forward.
@@ -512,7 +561,7 @@ public class CustomPrometeoCarController1 : MonoBehaviour
     }
 
     // This method apply negative torque to the wheels in order to go backwards.
-    public void GoReverse(){
+    public void GoReverse(float value){
       //If the forces aplied to the rigidbody in the 'x' asis are greater than
       //3f, it means that the car is losing traction, then the car will start emitting particle systems.
       if(Mathf.Abs(localVelocityX) > 2.5f){
@@ -523,7 +572,7 @@ public class CustomPrometeoCarController1 : MonoBehaviour
         DriftCarPS();
       }
         // The following part sets the throttle power to -1 smoothly.
-        throttleAxis = -OVRInput.Get(VRreverse);
+        throttleAxis = -value;
       //If the car is still going forward, then apply brakes in order to avoid strange
       //behaviours. If the local velocity in the 'z' axis is greater than 1f, then it
       //is safe to apply negative torque to go reverse.

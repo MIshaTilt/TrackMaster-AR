@@ -33,9 +33,11 @@ public class CarSpawner : MonoBehaviour
 
     public GameObject rightController;
     public GameObject rightControllerInteraction;
-    public GameObject notification;
+    //public GameObject notification;
 
     public Settings settings;
+
+    public GameObject handControl;
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +56,8 @@ public class CarSpawner : MonoBehaviour
             check.SetActive(false);
             check = null;
             screen.SetActive(false);
-            notification.SetActive(false);
             rightControllerInteraction.SetActive(true);
+            handControl.GetComponent<HandControl>().controller = null;
             StartCoroutine(Reset());
         }
         if (buttons[1].localScale.x != 1 && pressed == false)
@@ -126,14 +128,13 @@ public class CarSpawner : MonoBehaviour
         if (rightController.active == false && instance != null && carController.enabled==true)
         {
             ScreenDisable();
-            notification.SetActive(true);
-            isDriving = false;
+            HandEnable();
             Debug.Log("1");
         }
         else if(rightController.active == true && instance != null)
         {
-            //ScreenEnable();
-            notification.SetActive(false);
+            HandDisable();
+            ScreenEnable();
             //isDriving = true;
             Debug.Log("2");
 
@@ -195,10 +196,21 @@ public class CarSpawner : MonoBehaviour
         instance = null;
         instance = Instantiate(prefabs[n], spawn.position, Quaternion.identity);
         carController = instance.GetComponent<CustomPrometeoCarController1>();
+        handControl.GetComponent<HandControl>().controller = carController;
         var lights = instance.GetComponentsInChildren<Light>();
         foreach (Light light in lights)
         {
             light.enabled = settings.needLights;
         }
+    }
+
+    public void HandEnable()
+    {
+        handControl.SetActive(true);
+    }
+
+    public void HandDisable()
+    {
+        handControl.SetActive(false);
     }
 }
