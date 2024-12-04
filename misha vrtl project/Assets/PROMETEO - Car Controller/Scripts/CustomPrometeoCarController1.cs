@@ -351,49 +351,7 @@ public class CustomPrometeoCarController1 : MonoBehaviour
             ResetSteeringAngle();
         }
 
-        if (fwdFactor > 0)
-        {
-            CancelInvoke("DecelerateCar");
-            deceleratingCar = false;
-            GoForward(fwdFactor);
-        }
-        if (bckwFactor > 0)
-        {
-            CancelInvoke("DecelerateCar");
-            deceleratingCar = false;
-            GoReverse(bckwFactor);
-        }
-        if (leftFactor < 0)
-        {
-            TurnLeft(leftFactor);
-        }
-        if (rightFactor > 0)
-        {
-            TurnRight(rightFactor);
-        }
-        if (OVRInput.GetDown(VRhandbrake))
-        {
-            CancelInvoke("DecelerateCar");
-            deceleratingCar = false;
-            Handbrake();
-        }
-        if (OVRInput.GetUp(VRhandbrake))
-        {
-            RecoverTraction();
-        }
-        if (!(bckwFactor > 0) && !(fwdFactor > 0))
-        {
-            ThrottleOff();
-        }
-        if (!(bckwFactor > 0) && !(fwdFactor > 0) && !(bckwFactor > 0) && !deceleratingCar)
-        {
-            InvokeRepeating("DecelerateCar", 0f, 0.1f);
-            deceleratingCar = true;
-        }
-        if ((leftFactor == 0 && rightFactor == 0) && steeringAxis != 0f)
-        {
-            ResetSteeringAngle();
-        }
+        
 
         // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
         AnimateWheelMeshes();

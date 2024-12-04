@@ -60,6 +60,13 @@ public class HandControl : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        fwdLineRenderer.enabled = false;
+        bckwLineRenderer.enabled = false;
+        leftLineRenderer.enabled = false;
+        rightLineRenderer.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -80,6 +87,34 @@ public class HandControl : MonoBehaviour
         {
             RightActive();
         }
+        if ((fwdFactor > 0f) && fwd == true)
+        {
+            controller.GoForward(fwdFactor);
+
+        }
+        if ((bckwFactor > 0f) && bckw == true)
+        {
+            controller.GoReverse(bckwFactor);
+
+        }
+        if ((leftFactor > rightFactor) && left == true)
+        {
+            controller.TurnLeft(-1);
+            Debug.Log("left");
+
+        }
+        else if ((rightFactor > leftFactor) && right == true)
+        {
+            controller.TurnRight(1);
+            Debug.Log("right");
+        }
+        if(fwd == false &&  bckw == false && left == false && right == false)
+        {
+            controller.GoForward(0);
+            controller.TurnRight(0);
+            controller.GoReverse(0);
+            controller.TurnLeft(0);
+        }
     }
 
     public void FwdActive()
@@ -94,7 +129,6 @@ public class HandControl : MonoBehaviour
             fwdFactor = 0;
         }
         fwdText.SetText($"FWD: {RoundToDecimalPlaces(fwdFactor * 100, 0)}%");
-        controller.GoForward(fwdFactor);
     }
 
     public void BckwActive()
@@ -107,7 +141,6 @@ public class HandControl : MonoBehaviour
         bckwFactor = ((maxDist - dist) / maxDist);
         if (bckwFactor < 0) { bckwFactor = 0;}
         bckwText.SetText($"BCKW: {RoundToDecimalPlaces(bckwFactor * 100, 0)}%");
-        controller.GoReverse(bckwFactor);
     }
 
     public void LeftActive()
@@ -120,12 +153,7 @@ public class HandControl : MonoBehaviour
         leftFactor =((maxDist - dist) / maxDist);
         if (leftFactor < 0) {  leftFactor = 0;}
         leftText.SetText($"LEFT: {RoundToDecimalPlaces(leftFactor * 100, 0)}%");
-        if(leftFactor > rightFactor)
-        {
-            controller.TurnLeft(-leftFactor);
 
-        }
-        //controller.TurnLeft(-1);
     }
 
     public void RightActive()
@@ -138,12 +166,7 @@ public class HandControl : MonoBehaviour
         rightFactor = ((maxDist - dist) / maxDist);
         if (rightFactor < 0) {  rightFactor = 0;}
         rightText.SetText($"RIGHT: {RoundToDecimalPlaces(rightFactor * 100, 0)}%");
-        if (rightFactor > leftFactor)
-        {
-            controller.TurnRight(rightFactor);
 
-        }
-        //controller.TurnRight(1);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -169,14 +192,12 @@ public class HandControl : MonoBehaviour
             fwdLineRenderer.enabled = false;
             fwdFactor = 0;
             fwdText.SetText($"FWD: 0%");
-            controller.GoForward(0);
         }
         else if (other.gameObject.tag == "bckw") { 
             bckw = false; 
             bckwLineRenderer.enabled = false; 
             bckwFactor = 0;
             bckwText.SetText($"BCKW: 0%");
-            controller.GoReverse(0);
 
         }
         else if (other.gameObject.tag == "left") { 
@@ -184,14 +205,12 @@ public class HandControl : MonoBehaviour
             leftLineRenderer.enabled = false;
             leftFactor = 0;
             leftText.SetText($"LEFT: 0%");
-            controller.TurnLeft(0);
         }
         else if (other.gameObject.tag == "rifgt") { 
             right = false; 
             rightLineRenderer.enabled = false; 
             rightFactor = 0;
             rightText.SetText($"RIGHT: 0%");
-            controller.TurnRight(0);
         }
     }
 

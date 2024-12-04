@@ -10761,7 +10761,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5185053166646906555}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f19526df9140da040b8883ec836e6f46, type: 3}
@@ -11313,6 +11313,10 @@ MonoBehaviour:
   carSpeed: 0
   isDrifting: 0
   isTractionLocked: 0
+  fwdFactor: 0
+  bckwFactor: 0
+  leftFactor: 0
+  rightFactor: 0
 --- !u!65 &739662094887477400
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11330,7 +11334,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 4.069536, y: 2.0738587, z: 5.4684157}
   m_Center: {x: 0.20250113, y: 2.4069288, z: -0.0041688173}

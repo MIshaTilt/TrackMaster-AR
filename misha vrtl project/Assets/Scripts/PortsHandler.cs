@@ -26,6 +26,8 @@ public class PortsHandler : MonoBehaviour
 
     public GameObject main;
 
+    public bool isStatic = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,12 @@ public class PortsHandler : MonoBehaviour
         }
         else if (grabbed1.State == InteractableState.Normal && grabbed2.State == InteractableState.Normal && grabbed3.State == InteractableState.Normal && active == false && oneWay == false) { 
             StartCoroutine(SetAct()); }
+
+        if(isStatic == true)
+        {
+            main.transform.rotation = Quaternion.Euler(0f, main.transform.rotation.eulerAngles.y, 0f);
+
+        }
     }
 
     private IEnumerator SetAct()

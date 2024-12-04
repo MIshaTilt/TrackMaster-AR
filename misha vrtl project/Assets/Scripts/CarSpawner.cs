@@ -22,6 +22,7 @@ public class CarSpawner : MonoBehaviour
     private GameObject activebutton;
     private GameObject check;
     public GameObject screen;
+    public GameObject screenInner;
 
     public Image myNewBar;
     public OVRInput.RawButton changeMode;
@@ -38,6 +39,9 @@ public class CarSpawner : MonoBehaviour
     public Settings settings;
 
     public GameObject handControl;
+    public Transform rightHand;
+
+    public MusicPlayer musicPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +63,7 @@ public class CarSpawner : MonoBehaviour
             rightControllerInteraction.SetActive(true);
             handControl.GetComponent<HandControl>().controller = null;
             StartCoroutine(Reset());
+            musicPlayer.audioSource = null;
         }
         if (buttons[1].localScale.x != 1 && pressed == false)
         {
@@ -125,13 +130,13 @@ public class CarSpawner : MonoBehaviour
             reloadTimer = 0f;
         }
 
-        if (rightController.active == false && instance != null && carController.enabled==true)
+        if (rightController.active == false && instance != null && carController.enabled==true && handControl.active == false)
         {
             ScreenDisable();
             HandEnable();
             Debug.Log("1");
         }
-        else if(rightController.active == true && instance != null)
+        else if(rightController.active == true && instance != null && handControl.active == true)
         {
             HandDisable();
             ScreenEnable();
@@ -169,7 +174,7 @@ public class CarSpawner : MonoBehaviour
     {
         screen.SetActive(true);
         rightControllerInteraction.SetActive(false);
-        carController.enabled = true;
+        //carController.enabled = true;
         Debug.Log("screen tryna active");
         
     }
@@ -177,7 +182,7 @@ public class CarSpawner : MonoBehaviour
     {
         screen.SetActive(false);
         rightControllerInteraction.SetActive(true);
-        carController.enabled = false;
+        //carController.enabled = false;
     }
     public void EnableCar(int n)
     {
@@ -189,9 +194,15 @@ public class CarSpawner : MonoBehaviour
         }
         check = checks[n];
         check.SetActive(true);
-        screen.SetActive(true);
+        if (rightController.active == true)
+        {
+            screen.SetActive(true);
+
+
+        }
         rightControllerInteraction.SetActive(false);
         isDriving = true;
+        musicPlayer.audioSource = null;
         instance.DestroySafely();
         instance = null;
         instance = Instantiate(prefabs[n], spawn.position, Quaternion.identity);
@@ -202,15 +213,29 @@ public class CarSpawner : MonoBehaviour
         {
             light.enabled = settings.needLights;
         }
+        //musicPlayer.audioSource = GameObject.Find("Music").GetComponent<AudioSource>();
     }
 
     public void HandEnable()
     {
         handControl.SetActive(true);
+        handControl.transform.position = rightHand.transform.position + new Vector3(0, -1, 0);
     }
 
     public void HandDisable()
     {
         handControl.SetActive(false);
+    }
+
+    public void enaFpv(bool index)
+    {
+        if(index == true)
+        {
+            screenInner.SetActive(true);
+        }
+        else
+        {
+            screenInner.SetActive(false);
+        }
     }
 }
