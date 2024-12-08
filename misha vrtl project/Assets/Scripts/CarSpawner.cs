@@ -42,11 +42,12 @@ public class CarSpawner : MonoBehaviour
     public Transform rightHand;
 
     public MusicPlayer musicPlayer;
+    public GameObject musicCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        musicCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,6 +65,7 @@ public class CarSpawner : MonoBehaviour
             handControl.GetComponent<HandControl>().controller = null;
             StartCoroutine(Reset());
             musicPlayer.audioSource = null;
+            musicCanvas.SetActive(false);
         }
         if (buttons[1].localScale.x != 1 && pressed == false)
         {
@@ -213,6 +215,7 @@ public class CarSpawner : MonoBehaviour
         {
             light.enabled = settings.needLights;
         }
+        musicCanvas.SetActive(true);
         //musicPlayer.audioSource = GameObject.Find("Music").GetComponent<AudioSource>();
     }
 

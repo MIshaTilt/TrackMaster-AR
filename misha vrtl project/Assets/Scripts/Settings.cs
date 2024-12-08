@@ -49,6 +49,8 @@ public class Settings : MonoBehaviour
             sun.GetComponent<Light>().enabled = false;
             passthrough.textureOpacity = 1f;
             needLights = true;
+            ChangeLevel(5);
+            dropdown1.value = QualitySettings.GetQualityLevel();
         }
         if (value == 1)
         {
@@ -61,8 +63,11 @@ public class Settings : MonoBehaviour
             sun.GetComponent<Light>().enabled = true;
             passthrough.textureOpacity = 1f;
             needLights = false;
+            ChangeLevel(2);
+            dropdown1.value = QualitySettings.GetQualityLevel();
+
         }
-        if(value == 2)
+        if (value == 2)
         {
             var lights = GameObject.FindGameObjectsWithTag("lights");
             foreach (var light in lights)
@@ -73,6 +78,9 @@ public class Settings : MonoBehaviour
             sun.GetComponent<Light>().enabled = false;
             passthrough.textureOpacity = 0.2f;
             needLights = true;
+            ChangeLevel(5);
+            dropdown1.value = QualitySettings.GetQualityLevel();
+
         }
     }
 

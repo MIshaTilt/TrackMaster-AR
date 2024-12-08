@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4326895715990346777}
   - component: {fileID: 8335122661969406337}
   m_Layer: 0
-  m_Name: Music
+  m_Name: My Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,10 +39,10 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913549352031537688}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f19526df9140da040b8883ec836e6f46, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -891,7 +891,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 771ce407ce807b74885ec23ebd1e6647, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 0.75
   Loop: 1
   Mute: 0
@@ -6077,6 +6077,10 @@ MonoBehaviour:
   carSpeed: 0
   isDrifting: 0
   isTractionLocked: 0
+  fwdFactor: 0
+  bckwFactor: 0
+  leftFactor: 0
+  rightFactor: 0
 --- !u!65 &451564571612438832
 BoxCollider:
   m_ObjectHideFlags: 0

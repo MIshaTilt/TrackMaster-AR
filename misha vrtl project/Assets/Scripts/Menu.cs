@@ -130,7 +130,10 @@ public class Menu : MonoBehaviour
         {
             SpawnRoad(24);
         }
-
+        if (buttons[25].localScale.x != 1 && pressed == false)
+        {
+            SpawnRoad(25);
+        }
     }
 
     private IEnumerator Reset()

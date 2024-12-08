@@ -8,6 +8,9 @@ public class MusicPlayer : MonoBehaviour
     public AudioSource audioSource;
     public TextMeshProUGUI trackTitleText;
     public List<AudioClip> tracks;
+    public Sprite play;
+    public Sprite pause;
+    public Image field;
 
     private int currentTrackIndex = 0;
     private bool isPlayerActive = false;
@@ -17,7 +20,14 @@ public class MusicPlayer : MonoBehaviour
         if (isPlayerActive && !audioSource.isPlaying && !audioSource.loop && audioSource.clip != null)
         {
             PlayNextTrack();
+            Debug.Log("1");
         }
+    }
+
+    private void OnEnable()
+    {
+        /*PlayNextTrack();
+        PauseOrResumeTrack();*/
     }
 
     public void StartPlaying()
@@ -26,6 +36,7 @@ public class MusicPlayer : MonoBehaviour
         {
             isPlayerActive = true;
             PlayTrack(currentTrackIndex);
+            Debug.Log("2");
         }
     }
 
@@ -36,12 +47,16 @@ public class MusicPlayer : MonoBehaviour
             
             if (audioSource == null)
             {
-                audioSource = GameObject.Find("Music").GetComponent<AudioSource>();
+                audioSource = GameObject.Find("My Music").GetComponent<AudioSource>();
+                Debug.Log("4");
             }
             audioSource.clip = tracks[index];
             audioSource.Play();
             UpdateTrackTitle();
+            Debug.Log("3");
         }
+        field.sprite = play;
+        Debug.Log("5");
     }
 
     void UpdateTrackTitle()
@@ -49,6 +64,7 @@ public class MusicPlayer : MonoBehaviour
         if (trackTitleText != null && audioSource.clip != null)
         {
             trackTitleText.text = audioSource.clip.name;
+            Debug.Log("6");
         }
     }
 
@@ -56,12 +72,14 @@ public class MusicPlayer : MonoBehaviour
     {
         currentTrackIndex = (currentTrackIndex + 1) % tracks.Count;
         PlayTrack(currentTrackIndex);
+        Debug.Log("7");
     }
 
     public void PlayPreviousTrack()
     {
         currentTrackIndex = (currentTrackIndex - 1 + tracks.Count) % tracks.Count;
         PlayTrack(currentTrackIndex);
+        Debug.Log("8");
     }
 
     public void PauseOrResumeTrack()
@@ -69,11 +87,19 @@ public class MusicPlayer : MonoBehaviour
         if (audioSource.isPlaying)
         {
             audioSource.Pause();
+            field.sprite = pause;
+            Debug.Log("tryna pause");
+            Debug.Log(audioSource);
         }
         else
         {
-            audioSource.UnPause();
+            audioSource.Play();
+            field.sprite = play;
+            Debug.Log("tryna play");
+            Debug.Log(audioSource);
         }
+        Debug.Log(audioSource.isPlaying);
+        Debug.Log("9");
     }
 
     public void UpdateAudio(AudioSource source)
